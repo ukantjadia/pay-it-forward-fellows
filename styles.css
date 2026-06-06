@@ -115,6 +115,20 @@ h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
 
 .btn-lg { padding: 1.25rem 2rem; font-size: 1.125rem; }
 
+/* ---------- Urgency banner ---------- */
+.urgent-banner {
+  background: var(--red-dark, #b22222);
+  color: #fff;
+  text-align: center;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+}
+.urgent-banner a {
+  color: var(--gold);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
 /* ---------- Header ---------- */
 .site-header {
   position: sticky;
@@ -146,10 +160,10 @@ h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
   text-transform: uppercase;
   letter-spacing: 0.18em;
 }
-.logo-img { height: 3rem; width: auto; } /* compact header */
+.logo-img { height: 3.5rem; width: auto; } /* PNG is tight-cropped; compact header */
 @media (min-width: 768px) {
   .logo .logo-main { font-size: 1.75rem; }
-  .logo-img { height: 3.5rem; }
+  .logo-img { height: 4.25rem; }
 }
 
 .main-nav { display: none; align-items: center; gap: 2rem; }
@@ -214,13 +228,14 @@ h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
 .hero-content { max-width: 48rem; }
 .hero p.lead { margin-bottom: 2rem; }
 
-/* Stats row */
+/* Stats row (4-up per content doc) */
 .stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   margin-bottom: 2rem;
 }
+@media (min-width: 768px) { .stats { grid-template-columns: repeat(4, 1fr); } }
 .stat {
   background: rgb(255 255 255 / 0.8);
   backdrop-filter: blur(4px);
@@ -360,17 +375,15 @@ h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
 .fellow-card { display: grid; grid-template-columns: 1fr; }
 @media (min-width: 768px) { .fellow-card { grid-template-columns: 1fr 2fr; } }
 
-/* Navy gradient blended over the photo — texture visible, white text still readable */
+/* Exact match to the Vite app: light watercolor photo as the panel background,
+   white name, gold title — same as the original MeetFellows.tsx rendering */
 .fellow-profile {
   color: #fff;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background:
-    linear-gradient(to bottom right, rgb(0 51 102 / 0.82), rgb(13 31 51 / 0.88)),
-    url("assets/testimonial-background.webp") center / cover no-repeat;
-  text-shadow: 0 1px 3px rgb(0 0 0 / 0.35);
+  background: url("assets/testimonial-background.webp") center / cover no-repeat;
 }
 .fellow-icon { font-size: 3.75rem; margin-bottom: 1rem; }
 .fellow-profile h3 { color: #fff; font-size: 1.5rem; margin-bottom: 0.5rem; }
@@ -388,6 +401,51 @@ h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
   font-weight: 600;
   color: var(--gold);
 }
+
+/* ---------- Cost table (The Crisis) ---------- */
+.cost-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+.cost-table th, .cost-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.cost-table th { background: var(--navy); color: #fff; font-weight: 600; }
+.cost-table td:last-child, .cost-table th:last-child { text-align: right; }
+.cost-table tr.total td {
+  font-weight: 700;
+  color: var(--navy);
+  background: rgb(212 175 55 / 0.12);
+  border-top: 2px solid var(--gold);
+}
+
+/* ---------- Donation tiers (How to Help) ---------- */
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+@media (min-width: 768px) { .tier-grid { grid-template-columns: repeat(3, 1fr); } }
+.tier-card {
+  background: #fff;
+  border: 1px solid rgb(212 175 55 / 0.4);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  text-align: center;
+  transition: box-shadow 300ms var(--ease-out), border-color 300ms var(--ease-out);
+}
+.tier-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+.tier-amount { font-size: 1.875rem; font-weight: 700; color: var(--gold); font-family: 'Georgia', serif; }
+.tier-desc { font-size: 0.875rem; color: var(--text-muted); margin-top: 0.5rem; }
 
 /* ---------- Footer ---------- */
 .site-footer { background: var(--navy); color: #fff; padding-block: 3rem; }

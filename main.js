@@ -23,4 +23,12 @@
   document.querySelectorAll("[data-year]").forEach(function (el) {
     el.textContent = new Date().getFullYear();
   });
+
+  // Countdown to the June 30, 2026 first tuition installment
+  var countdownEls = document.querySelectorAll("[data-countdown]");
+  if (countdownEls.length) {
+    var days = Math.ceil((new Date("2026-06-30T23:59:59") - new Date()) / 86400000);
+    var label = days > 0 ? days + (days === 1 ? " day" : " days") : "0 days";
+    countdownEls.forEach(function (el) { el.textContent = label; });
+  }
 })();
