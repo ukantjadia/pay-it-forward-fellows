@@ -23,7 +23,8 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  /* Matches React project base layer (client/src/index.css) */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: var(--text-body);
   background: #fff;
   line-height: 1.6;
@@ -58,7 +59,12 @@ section { padding-block: 3rem; }
 }
 
 /* ---------- Typography ---------- */
-h1, h2, h3 { color: var(--navy); line-height: 1.2; }
+h1, h2, h3 {
+  color: var(--navy);
+  line-height: 1.2;
+  font-family: 'Georgia', serif; /* heading font from React project */
+  letter-spacing: -0.5px;
+}
 .bg-navy h1, .bg-navy h2, .bg-navy-grad h1, .bg-navy-grad h2 { color: #fff; }
 
 h1 { font-size: 2.25rem; font-weight: 700; margin-bottom: 1rem; }
@@ -122,7 +128,7 @@ h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-block: 1rem;
+  padding-block: 0.5rem;
 }
 
 /* Logo image (assets/piff-logo.png). .logo-main/.logo-sub kept as text fallback styles. */
@@ -140,10 +146,10 @@ h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
   text-transform: uppercase;
   letter-spacing: 0.18em;
 }
-.logo-img { height: 6rem; width: auto; } /* h-24; md bump below */
+.logo-img { height: 3rem; width: auto; } /* compact header */
 @media (min-width: 768px) {
   .logo .logo-main { font-size: 1.75rem; }
-  .logo-img { height: 7rem; } /* h-28 */
+  .logo-img { height: 3.5rem; }
 }
 
 .main-nav { display: none; align-items: center; gap: 2rem; }
@@ -354,7 +360,7 @@ h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
 .fellow-card { display: grid; grid-template-columns: 1fr; }
 @media (min-width: 768px) { .fellow-card { grid-template-columns: 1fr 2fr; } }
 
-/* Dark gradient layered OVER the photo so white text stays readable */
+/* Navy gradient blended over the photo — texture visible, white text still readable */
 .fellow-profile {
   color: #fff;
   padding: 2rem;
@@ -362,8 +368,9 @@ h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
   flex-direction: column;
   justify-content: space-between;
   background:
-    linear-gradient(to bottom right, rgb(0 51 102 / 0.93), rgb(13 31 51 / 0.93)),
+    linear-gradient(to bottom right, rgb(0 51 102 / 0.82), rgb(13 31 51 / 0.88)),
     url("assets/testimonial-background.webp") center / cover no-repeat;
+  text-shadow: 0 1px 3px rgb(0 0 0 / 0.35);
 }
 .fellow-icon { font-size: 3.75rem; margin-bottom: 1rem; }
 .fellow-profile h3 { color: #fff; font-size: 1.5rem; margin-bottom: 0.5rem; }
