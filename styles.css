@@ -125,9 +125,7 @@ h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
   padding-block: 1rem;
 }
 
-/* Text logo (fallback until real logo PNG is provided).
-   To swap in the real logo: replace .logo contents with
-   <img src="assets/piff-logo.png" alt="Pay It Forward Fellows Foundation" class="logo-img"> */
+/* Logo image (assets/piff-logo.png). .logo-main/.logo-sub kept as text fallback styles. */
 .logo { display: flex; flex-direction: column; line-height: 1.15; flex-shrink: 0; }
 .logo .logo-main {
   font-size: 1.5rem;
