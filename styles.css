@@ -1,0 +1,411 @@
+/* ==========================================================================
+   Pay It Forward Fellows — styles.css
+   Design system: navy #003366 / gold #D4AF37, system font stack
+   ========================================================================== */
+
+:root {
+  --navy: #003366;
+  --navy-dark: #0d1f33;
+  --navy-mid: #1a5c99;
+  --gold: #d4af37;
+  --gold-dark: #c9a032;
+  --bg-soft: #f0f4f8;
+  --bg-softer: #f8f9fa;
+  --text-body: #374151;   /* gray-700 */
+  --text-muted: #4b5563;  /* gray-600 */
+  --border: #e5e7eb;
+  --red: #ef4444;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--text-body);
+  background: #fff;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; text-decoration: none; }
+
+main { flex: 1; }
+
+/* ---------- Layout ---------- */
+.container {
+  width: 100%;
+  max-width: 80rem; /* 7xl */
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+section { padding-block: 3rem; }
+@media (min-width: 768px) { section { padding-block: 4rem; } }
+
+.bg-soft   { background: var(--bg-soft); }
+.bg-softer { background: var(--bg-softer); }
+.bg-navy   { background: var(--navy); color: #fff; }
+.bg-navy-grad {
+  background: linear-gradient(to right, var(--navy), var(--navy-dark));
+  color: #fff;
+}
+
+/* ---------- Typography ---------- */
+h1, h2, h3 { color: var(--navy); line-height: 1.2; }
+.bg-navy h1, .bg-navy h2, .bg-navy-grad h1, .bg-navy-grad h2 { color: #fff; }
+
+h1 { font-size: 2.25rem; font-weight: 700; margin-bottom: 1rem; }
+h2 { font-size: 1.875rem; font-weight: 700; margin-bottom: 1.5rem; }
+h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
+
+@media (min-width: 768px) {
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2.25rem; }
+}
+@media (min-width: 1024px) {
+  .hero h1 { font-size: 3.75rem; }
+}
+
+.lead { font-size: 1.125rem; }
+@media (min-width: 768px) { .lead { font-size: 1.25rem; } }
+
+.text-gold   { color: var(--gold); }
+.text-center { text-align: center; }
+.muted       { color: var(--text-muted); }
+.narrow      { max-width: 48rem; margin-inline: auto; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font: inherit;
+  font-weight: 600;
+  border: 0;
+  border-radius: 0.5rem;
+  padding: 0.75rem 2rem;
+  cursor: pointer;
+  transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out),
+              transform 160ms var(--ease-out);
+}
+.btn:active { transform: scale(0.97); }
+
+.btn-gold { background: var(--gold); color: var(--navy); }
+.btn-gold:hover { background: var(--gold-dark); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--navy);
+  border: 1px solid var(--navy);
+}
+.btn-outline:hover { background: var(--navy); color: #fff; }
+
+.btn-lg { padding: 1.25rem 2rem; font-size: 1.125rem; }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+}
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1rem;
+}
+
+/* Text logo (fallback until real logo PNG is provided).
+   To swap in the real logo: replace .logo contents with
+   <img src="assets/piff-logo.png" alt="Pay It Forward Fellows Foundation" class="logo-img"> */
+.logo { display: flex; flex-direction: column; line-height: 1.15; flex-shrink: 0; }
+.logo .logo-main {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+}
+.logo .logo-sub {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+.logo-img { height: 6rem; width: auto; } /* h-24; md bump below */
+@media (min-width: 768px) {
+  .logo .logo-main { font-size: 1.75rem; }
+  .logo-img { height: 7rem; } /* h-28 */
+}
+
+.main-nav { display: none; align-items: center; gap: 2rem; }
+.main-nav a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 160ms var(--ease-out);
+}
+.main-nav a:hover, .main-nav a[aria-current="page"] { color: var(--navy); }
+.main-nav a[aria-current="page"] { font-weight: 700; }
+
+.header-cta { display: none; }
+
+.menu-toggle {
+  display: inline-flex;
+  background: none;
+  border: 0;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: var(--navy);
+}
+.menu-toggle:hover { background: var(--bg-soft); }
+
+@media (min-width: 768px) {
+  .main-nav, .header-cta { display: inline-flex; }
+  .menu-toggle { display: none; }
+}
+
+/* Mobile menu */
+.mobile-menu {
+  display: none;
+  border-top: 1px solid var(--border);
+  background: var(--bg-softer);
+}
+.mobile-menu.open { display: block; }
+.mobile-menu nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-block: 1rem;
+}
+.mobile-menu a { font-size: 0.875rem; font-weight: 500; padding-block: 0.5rem; }
+.mobile-menu .btn { justify-content: center; width: 100%; }
+
+/* ---------- Hero (Home) ---------- */
+.hero { position: relative; overflow: hidden; padding-block: 4rem; }
+@media (min-width: 768px) { .hero { padding-block: 6rem; } }
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url("assets/hero-medical-education.webp") center / cover no-repeat;
+  opacity: 0.4;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, #fff, rgb(255 255 255 / 0.8), transparent);
+}
+.hero .container { position: relative; z-index: 10; }
+.hero-content { max-width: 48rem; }
+.hero p.lead { margin-bottom: 2rem; }
+
+/* Stats row */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.stat {
+  background: rgb(255 255 255 / 0.8);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgb(212 175 55 / 0.3);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+.stat-value { font-size: 1.875rem; font-weight: 700; color: var(--navy); }
+.stat-value.gold { color: var(--gold); }
+.stat-label { font-size: 0.875rem; color: var(--text-muted); }
+@media (min-width: 768px) { .stat-value { font-size: 2.25rem; } }
+
+.hero-actions { display: flex; flex-direction: column; gap: 1rem; }
+@media (min-width: 640px) { .hero-actions { flex-direction: row; } }
+
+/* ---------- Cards ---------- */
+.card {
+  background: #fff;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  overflow: hidden;
+  transition: box-shadow 300ms var(--ease-out);
+}
+.card:hover {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+@media (min-width: 768px) {
+  .card-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .card-grid-2 { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Teaser cards (Home) */
+.teaser-banner {
+  height: 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.75rem;
+}
+.teaser-banner span { opacity: 0.25; }
+.teaser-navy { background: linear-gradient(to bottom right, var(--navy), var(--navy-dark)); }
+.teaser-gold { background: linear-gradient(to bottom right, var(--gold), var(--gold-dark)); }
+.teaser-blue { background: linear-gradient(to bottom right, var(--navy-mid), var(--navy)); }
+.teaser-body { padding: 1.5rem; }
+.teaser-body p { color: var(--text-muted); margin-bottom: 1rem; }
+
+.link-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--gold);
+  font-weight: 600;
+  transition: color 160ms var(--ease-out);
+}
+.link-gold:hover { color: var(--navy); }
+
+/* Accent-border cards (Our Story, Meet Fellows) */
+.card-accent { padding: 1.5rem; border-left: 4px solid var(--gold); border-radius: 0.5rem; }
+.card-accent.red { border-left-color: var(--red); }
+.card-accent p + p { margin-top: 0.75rem; }
+.note { font-size: 0.875rem; color: var(--text-muted); font-style: italic; }
+
+/* Callout boxes */
+.callout {
+  background: var(--bg-soft);
+  border: 1px solid rgb(212 175 55 / 0.3);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+.callout-warn {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  color: #1f2937;
+}
+.callout-gold-bar {
+  background: #fff;
+  border-left: 4px solid var(--gold);
+  border-radius: 0.25rem;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+.flag {
+  background: #fff;
+  border-left: 4px solid var(--red);
+  border-radius: 0.25rem;
+  padding: 1rem;
+}
+.flag + .flag { margin-top: 1rem; }
+
+/* ---------- Mission quote (Home) ---------- */
+.mission-quote { font-size: 1.25rem; font-style: italic; margin-bottom: 1rem; }
+@media (min-width: 768px) { .mission-quote { font-size: 1.5rem; } }
+
+/* ---------- Timeline (Our Story) ---------- */
+.timeline-photo {
+  height: 24rem;
+  border-radius: 0.5rem;
+  margin-bottom: 3rem;
+  background: url("assets/timeline-accent.webp") center / cover no-repeat;
+}
+.timeline { display: flex; flex-direction: column; }
+.timeline-item { display: flex; gap: 1.5rem; }
+.timeline-marker { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+.timeline-dot {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  background: var(--gold);
+  color: var(--navy);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.timeline-line {
+  width: 4px;
+  flex: 1;
+  min-height: 4rem;
+  background: rgb(212 175 55 / 0.3);
+  margin-top: 0.5rem;
+}
+.timeline-body { padding-bottom: 2rem; }
+.timeline-date { font-size: 0.875rem; font-weight: 600; color: var(--gold); }
+.timeline-body h3 { font-size: 1.125rem; margin: 0.25rem 0 0.5rem; }
+
+/* ---------- Testimonials (Meet Fellows) ---------- */
+.fellows { display: flex; flex-direction: column; gap: 3rem; }
+
+.fellow-card { display: grid; grid-template-columns: 1fr; }
+@media (min-width: 768px) { .fellow-card { grid-template-columns: 1fr 2fr; } }
+
+/* Dark gradient layered OVER the photo so white text stays readable */
+.fellow-profile {
+  color: #fff;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background:
+    linear-gradient(to bottom right, rgb(0 51 102 / 0.93), rgb(13 31 51 / 0.93)),
+    url("assets/testimonial-background.webp") center / cover no-repeat;
+}
+.fellow-icon { font-size: 3.75rem; margin-bottom: 1rem; }
+.fellow-profile h3 { color: #fff; font-size: 1.5rem; margin-bottom: 0.5rem; }
+.fellow-title { color: var(--gold); font-weight: 600; margin-bottom: 1rem; }
+.fellow-bio { font-size: 0.875rem; color: #f3f4f6; }
+
+.fellow-story { padding: 2rem; display: flex; flex-direction: column; justify-content: center; }
+.quote-mark { font-size: 3rem; line-height: 1; color: var(--gold); font-family: Georgia, serif; }
+.fellow-quote { font-size: 1.125rem; font-style: italic; margin-bottom: 1rem; }
+.fellow-quote2 { margin-bottom: 1.5rem; }
+.fellow-sig {
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+/* ---------- Footer ---------- */
+.site-footer { background: var(--navy); color: #fff; padding-block: 3rem; }
+@media (min-width: 768px) { .site-footer { padding-block: 4rem; } }
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+@media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.site-footer h3 { color: var(--gold); font-size: 1.125rem; }
+.site-footer p, .site-footer li { font-size: 0.875rem; color: #f3f4f6; }
+.site-footer ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.site-footer a { transition: color 160ms var(--ease-out); }
+.site-footer a:hover { color: var(--gold); }
+
+.footer-bottom {
+  border-top: 1px solid #4b5563;
+  padding-top: 2rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #d1d5db;
+}
